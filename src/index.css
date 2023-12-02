@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+    color: black
+}
+
+img {
+    width: 100%;
+}
+
+header {
+    background-color: rgb(222, 237, 226);
+    padding: 0 16px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    height: 90px;
+    align-items: center;
+    justify-content: center;
+}
+
+input {
+    padding: 16px;
+}
+
+button {
+    padding: 16px;
+}
+
+main {
+    padding-top: 90px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.gallery-actions {
+    text-align: center;
+    padding: 16px;
+}
+
+.gallery-item {
+    display: block;
+    color: black;
+    text-decoration: none;
+    width: 25%;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.photo-card {
+    border: 1px solid #d0d0d0;
+}
+
+.photo-card img {
+    display: block;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.info {
+    display: flex;
+}
+
+.info-item {
+    padding: 8px;
+    width: 25%;
+    margin: 0;
+}
+
+.info-item > span,
+.info-item > b {
+    display: block;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    position: relative;
+    animation: rotate 1s linear infinite;
+    margin: 32px auto 0;
+  }
+  .loader::before , .loader::after {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    inset: 0px;
+    border-radius: 50%;
+    border: 5px solid rgb(95, 185, 221);;
+    animation: prixClipFix 2s linear infinite ;
+  }
+  .loader::after{
+    border-color: rgb(223, 149, 112);
+    animation: prixClipFix 2s linear infinite , rotate 0.5s linear infinite reverse;
+    inset: 6px;
+  }
+  
+  @keyframes rotate {
+    0%   {transform: rotate(0deg)}
+    100%   {transform: rotate(360deg)}
+  }
+  
+  @keyframes prixClipFix {
+      0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+      25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+      50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+      75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
+      100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
+  }
