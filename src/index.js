@@ -24,8 +24,9 @@ async function loadCards(event) {
     refs.loader.classList.remove('hidden')
     
     const formElements = event.currentTarget.elements;
+    page = 1;
     searchQuery = formElements.searchQuery.value;
-
+    
     try {
         const imageData = await fetchImages(searchQuery)
 
@@ -46,7 +47,7 @@ async function loadCards(event) {
                 // console.log(image)
                 // console.log(renderImageCard(image))
             })
-
+               
             lightbox.refresh();
             cardHeight = refs.gallery.firstElementChild.getBoundingClientRect().height;
         }
@@ -64,7 +65,7 @@ async function loadMore() {
     refs.loader.classList.remove('hidden')
     refs.galleryActions.classList.add('hidden')
 
-    try {
+    try {    
         const imageData = await fetchImages(searchQuery, page + 1)
 
         page = page + 1;
@@ -74,7 +75,6 @@ async function loadMore() {
         if (imageData.totalHits > 0) {
             imageData.hits.forEach((image) => {
                 refs.gallery.innerHTML = refs.gallery.innerHTML + renderImageCard(image);
-    
                 // console.log(image)
                 // console.log(renderImageCard(image))
             })
