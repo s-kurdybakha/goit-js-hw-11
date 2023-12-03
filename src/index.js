@@ -51,7 +51,7 @@ async function loadCards(event) {
             cardHeight = refs.gallery.firstElementChild.getBoundingClientRect().height;
         }
     
-        if (imageData.totalHits > 20) {
+        if (imageData.totalHits > 40) {
             refs.galleryActions.classList.remove('hidden')
         }
     } catch(err) {
@@ -85,16 +85,18 @@ async function loadMore() {
             //     top: cardHeight * 2,
             //     behavior: "smooth",
             // });
-        }
+        }     
 
-        // console.log(imageData.totalHits, page * 20)
-
-        if (imageData.totalHits >= page * 20) {
+        if (imageData.hits.length > 0) {
             refs.galleryActions.classList.remove('hidden')
+        }else {
+            refs.galleryActions.classList.add('hidden')
+            Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
         }
+     
     } catch(err) {
-        if (err.code !== 'ERR_BAD_REQUEST') {
-            Notiflix.Notify.failure('Sorry, something went wrong. Please try to reload the page.');
+        if (err.code === 'ERR_BAD_REQUEST') {
+            Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
         }
 
         refs.loader.classList.add('hidden')

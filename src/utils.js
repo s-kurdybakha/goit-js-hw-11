@@ -1,10 +1,11 @@
 import axios from "axios";
+import Notiflix from 'notiflix';
 
 const PIXABAY_API_URL = 'https://pixabay.com/api/';
 const PIXABAY_API_KEY = '41017518-95b21bb0f6248f508a9feed4e';
 
 function isElementInViewport(el) {
-    var rect = el.getBoundingClientRect();
+    const rect = el.getBoundingClientRect();
 
     return (
         rect.top >= 0 &&
@@ -15,9 +16,9 @@ function isElementInViewport(el) {
 }
 
 export function onVisibilityChange(el, callback) {
-    var old_visible;
+    let old_visible;
     return function () {
-        var visible = isElementInViewport(el);
+        const visible = isElementInViewport(el);
         if (visible != old_visible) {
             old_visible = visible;
             if (typeof callback == 'function' && visible === true) {
@@ -37,6 +38,7 @@ export function fetchImages(query, page) {
                 type: 'photo',
                 orientation: 'horizontal',
                 safesearch: true,
+                per_page: 40
             }
         })
             .then((response) => {
